@@ -1,6 +1,7 @@
 #include "graphedge.h"
 #include "graphnode.h"
 
+
 GraphNode::GraphNode(int id)
 {
     _id = id;
@@ -11,7 +12,7 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
-    delete _chatBot; 
+    //delete _chatBot; 
 
     ////
     //// EOF STUDENT CODE
@@ -22,14 +23,14 @@ void GraphNode::AddToken(std::string token)
     _answers.push_back(token);
 }
 
-void GraphNode::AddEdgeToParentNode(GraphEdge *edge)
+void GraphNode::AddEdgeToParentNode(std::unique_ptr<GraphEdge> edge)
 {
-    _parentEdges.push_back(edge);
+    _parentEdges.push_back(std::move(edge));
 }
 
-void GraphNode::AddEdgeToChildNode(GraphEdge *edge)
+void GraphNode::AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge)
 {
-    _childEdges.push_back(edge);
+    _childEdges.push_back(std::move(edge));
 }
 
 //// STUDENT CODE
